@@ -18,8 +18,6 @@ logging.getLogger("pyrogram").setLevel(logging.WARNING)
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
-from plugins.helper import NON_OWNER
-
 @Client.on_message(filters.regex('http') & filters.private)
 async def pdisk(bot, message):
         text = message.text
