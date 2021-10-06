@@ -17,14 +17,31 @@ from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
 
 START = """
-Start Message
+Hi {}!
+        
+This Is PDisk Bot For Free 😇
+Read /help Carefully & Do Follow All Given Instruction...
+
+For More Bots Join @HeimanSupports
 """
 
 HELP = """
-Help Message
+**Send Me Direct Download Link Like Mirror Or From @LinkXGenBot.
+
+Send As This Format**
+
+`link | Title`
+
+**Or**
+
+`Video link | Title | Thumbnail link`
+
+**NOTE:
+➢ Do Not Spam, Send Link One By One
+➢ To Know Status Just Go To cofilink.com/home**
 """
 
-NON_OWNER = "You Can't Use Me Ask My [Owner](tg://user?id={})"
+# NON_OWNER = "You Can't Use Me Ask My [Owner](tg://user?id={})"
 
 
 START_BUTTONS = InlineKeyboardMarkup(
@@ -49,7 +66,7 @@ HELP_BUTTONS = InlineKeyboardMarkup(
 async def start(bot, message):
         await message.reply_chat_action("typing")
         await message.reply_text(
-            text=START,
+            text=START.format(message.chat.mention),
             disable_web_page_preview=True,
             reply_markup=START_BUTTONS
         )
