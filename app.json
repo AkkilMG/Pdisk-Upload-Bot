@@ -1,0 +1,49 @@
+{
+  "name": "Pdisk Upload Bot",
+  "description": "Telegram's best Open Source Pdisk Upload Bot. Create your Fork now.",
+  "keywords": [
+    "telegram",
+    "best",
+    "pdisk",
+    "upload",
+    "bot",
+    "open",
+    "source",
+    "custom",
+    "thumbnail",
+    "title"
+  ],
+  "success_url": "https://telegram.me/PDiskXUploaderBot",
+  "website": "https://github.com/HeimanPictures/HeimanPictures/",
+  "repository": "https://github.com/HeimanPictures/Pdisk-Upload-Bot",
+  "env": {
+    "BOT_TOKEN": {
+      "description": "Your bot token, as a string from botfather.",
+      "value": ""
+    },
+    "API_ID": {
+      "description": "Get this value from https://my.telegram.org",
+      "value": ""
+    },
+    "API_HASH": {
+      "description": "Get this value from https://my.telegram.org",
+      "value": ""
+    },
+
+    "API_KEY": {
+      "description": "Your PDisk API Key from https://www.cofilink.com/use-api. Do Sign-in",
+      "value": ""
+    }
+  },
+  "addons": [
+  ],
+  "buildpacks": [{
+    "url": "heroku/python"
+  }],
+  "formation": {
+    "worker": {
+      "quantity": 1,
+      "size": "free"
+    }
+  }
+}
