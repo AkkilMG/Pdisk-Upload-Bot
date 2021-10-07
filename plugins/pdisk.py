@@ -26,26 +26,31 @@ async def pdisk(bot, message):
             vd_id = spl[-1]
             auth = "http://linkapi.net/open/clone_item/?api_key="+Config.API_KEY+"&item_id="+vd_id
         else:
-            spl = text.split(' | ')
-            url = spl[0]
-            title = spl[1]
             try:
+            # Solved https://github.com/HeimanPictures/Pdisk-Upload-Bot/issues/1#issue-1018422275
+                spl = text.split(' | ')
+                url = spl[0]
+                title = spl[1]
+                try:
                 thumb = spl[2]
-                auth = "http://linkapi.net/open/create_item/?api_key="+Config.API_KEY+"&content_src="+url+"&link_type=link"+"&title="+title+"&cover_url="+thumb 
+                    auth = "http://linkapi.net/open/create_item/?api_key="+Config.API_KEY+"&content_src="+url+"&link_type=link"+"&title="+title+"&cover_url="+thumb 
+                except Exception:
+                    auth = "http://linkapi.net/open/create_item/?api_key="+Config.API_KEY+"&content_src="+url+"&link_type=link"+"&title="+title
             except Exception:
-                auth = "http://linkapi.net/open/create_item/?api_key="+Config.API_KEY+"&content_src="+url+"&link_type=link"+"&title="+title
-        headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}
-        r = requests.get(auth,headers)
-        res = r.json()
+                url = text
+                auth = "http://linkapi.net/open/create_item/?api_key="+Config.API_KEY+"&content_src="+url+"&link_type=link"+"&title=None"
+            headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'}
+            r = requests.get(auth,headers)
+            res = r.json()
             #print(res)
-        id = res["data"]["item_id"]
-        await message.reply_chat_action("typing")
-        pdisk = "https://cofilink.com/share-video?videoid="+id      
-        await message.reply_photo(
-            photo="https://static10.tgstat.ru/channels/_0/f3/f3218a8a0d195d12e73f6b69e51bbb4f.jpg",
-            caption="**URL:** `"+pdisk+"` \n\n**Your Provided Link:** `"+url+"`\n\n**The PDisk Link Is Below The File Will Be Uploaded in few minutes.\nThank You**\n\n**@HeimanSupports**",
-            reply_markup=InlineKeyboardMarkup([
-                [ InlineKeyboardButton(text="🔗 PDisk 🔗", url=f"{pdisk}")]
-            ])
-        )
+            id = res["data"]["item_id"]
+            await message.reply_chat_action("typing")
+            pdisk = "https://cofilink.com/share-video?videoid="+id      
+            await message.reply_photo(
+                photo="https://static10.tgstat.ru/channels/_0/f3/f3218a8a0d195d12e73f6b69e51bbb4f.jpg",
+                caption="**URL:** `"+pdisk+"`\n\n**The PDisk Link Is Below The Provided Link Will Be Uploaded in few minutes.\nThank You**\n\n**@HeimanSupports**",
+                reply_markup=InlineKeyboardMarkup([
+                    [ InlineKeyboardButton(text="🔗 PDisk 🔗", url=f"{pdisk}")]
+                ])
+            )
 
