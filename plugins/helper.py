@@ -66,7 +66,7 @@ HELP_BUTTONS = InlineKeyboardMarkup(
 async def start(bot, message):
         await message.reply_chat_action("typing")
         await message.reply_text(
-            text=START.format(message.chat.mention),
+            text=START.format(message.from_user.mention),
             disable_web_page_preview=True,
             reply_markup=START_BUTTONS
         )
@@ -80,3 +80,21 @@ async def help(bot, message):
             disable_web_page_preview=True,
             reply_markup=HELP_BUTTONS
         )
+
+
+@Client.on_callback_query()
+async def cb_data(bot, update):
+    if update.data == "home":
+        await update.message.edit_text(
+            text=START.format(update.from_user.mention),
+            disable_web_page_preview=True,
+            reply_markup=START_BUTTONS
+        )
+    elif update.data == "help":
+        await update.message.edit_text(
+            text=HELP,
+            disable_web_page_preview=True,
+            reply_markup=HELP_BUTTONS
+        )
+    else:
+        await update.message.delete()
