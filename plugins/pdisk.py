@@ -32,7 +32,7 @@ async def pdisk(bot, message):
                 url = spl[0]
                 title = spl[1]
                 try:
-                thumb = spl[2]
+                    thumb = spl[2]
                     auth = "http://linkapi.net/open/create_item/?api_key="+Config.API_KEY+"&content_src="+url+"&link_type=link"+"&title="+title+"&cover_url="+thumb 
                 except Exception:
                     auth = "http://linkapi.net/open/create_item/?api_key="+Config.API_KEY+"&content_src="+url+"&link_type=link"+"&title="+title
