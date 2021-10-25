@@ -53,7 +53,7 @@ python bot.py
 
 ## Credits
 
-- **[Akkil](https://github.com/HeimanPictures/)**
+- **[AkKiL](https://github.com/HeimanPictures/)**
 - **[Pyrogram](https://github.com/pyrogram)**
 
 ## Note
